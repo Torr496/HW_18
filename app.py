@@ -9,8 +9,17 @@ from flask_restx import Api
 from config import Config
 from models import Review, Book
 from setup_db import db
-from views.books import book_ns
+from views.movies import book_ns
 from views.reviews import review_ns
+
+app = Flask(__name__)
+api = Api(app)
+movie_ns = api.namespace("movie")
+directors_ns = api.namespace("director")
+genres_ns = api.namespace("genre")
+
+
+
 
 # функция создания основного объекта app
 def create_app(config_object):
