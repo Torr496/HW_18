@@ -5,13 +5,14 @@ from models import Director, DirectorSchema
 directors_ns = Namespace('directors')
 director_schema = DirectorSchema()
 directors_schema = DirectorSchema(many=True)
+from setup_db import db
 
 
 
 @directors_ns.route("/")
 class GenresView(Resource):
     def get(self):
-        directors = Director.query.all()
+        directors = db.session.query(Director).all()
         if directors:
             return directors_schema.dump(directors), 200
         else:
@@ -22,7 +23,7 @@ class GenresView(Resource):
 @directors_ns.route('/<int:nid>')
 class GenresView(Resource):
     def get(self, nid):
-        genre = Director.query.get(nid)
+        genre = db.session.query(Director).get(nid)
         if genre:
             return director_schema.dump(genre), 200
         else:

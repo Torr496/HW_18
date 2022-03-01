@@ -6,12 +6,12 @@ genres_ns = Namespace('genres')
 genre_schema = GenreSchema()
 genres_schema = GenreSchema(many=True)
 
-
+from setup_db import db
 
 @genres_ns.route("/")
 class GenresView(Resource):
     def get(self):
-        genres = Genre.query.all()
+        genres = db.session.query(Genre).query.all()
         if genres:
             return genres_schema.dump(genres), 200
         else:
@@ -22,7 +22,7 @@ class GenresView(Resource):
 @genres_ns.route('/<int:nid>')
 class GenresView(Resource):
     def get(self, nid):
-        genre = Genre.query.get(nid)
+        genre = db.session.query(Genre).query.get(nid)
         if genre:
             return genre_schema.dump(genre), 200
         else:

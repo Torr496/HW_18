@@ -12,6 +12,7 @@ class Movie(db.Model):
     description = db.Column(db.String)
     trailer = db.Column(db.String)
     year = db.Column(db.Integer)
+    rating = db.Column(db.Integer)
     genre_id = db.Column(db.Integer, db.ForeignKey("genre.id"))
     genre = db.relationship("Genre")
     director_id = db.Column(db.Integer, db.ForeignKey("director.id"))
@@ -38,15 +39,13 @@ class MovieSchema(Schema):
     trailer = fields.Str()
     year = fields.Int()
     rating = fields.Float()
-    genre_id = fields.Int()
-    director_id = fields.Int()
 
 
 class GenreSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
     name = fields.Str()
 
 
 class DirectorSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
     name = fields.Str()
