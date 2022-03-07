@@ -49,3 +49,4 @@ class GenreSchema(Schema):
 class DirectorSchema(Schema):
     id = fields.Int()
     name = fields.Str()
+

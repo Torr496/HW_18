@@ -26,9 +26,9 @@ def create_app(config_object):
 def register_extensions(app):
     db.init_app(app)
     api = Api(app)
-    api.namespace(directors_ns)
-    api.namespace(movie_ns)
-    api.namespace(genres_ns)
+    api.add_namespace(directors_ns)
+    api.add_namespace(movie_ns)
+    api.add_namespace(genres_ns)
 
 
 app = create_app(Config())
