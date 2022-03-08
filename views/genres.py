@@ -20,7 +20,7 @@ class GenresView(Resource):
 
 
 @genres_ns.route('/<int:nid>')
-class GenresView(Resource):
+class GenreView(Resource):
     def get(self, nid):
         genre = db.session.query(Genre).query.get(nid)
         if genre:

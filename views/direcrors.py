@@ -10,7 +10,7 @@ from setup_db import db
 
 
 @directors_ns.route("/")
-class GenresView(Resource):
+class DirectorsView(Resource):
     def get(self):
         directors = db.session.query(Director).all()
         if directors:
@@ -21,7 +21,7 @@ class GenresView(Resource):
 
 
 @directors_ns.route('/<int:nid>')
-class GenresView(Resource):
+class DirectorView(Resource):
     def get(self, nid):
         genre = db.session.query(Director).get(nid)
         if genre:
